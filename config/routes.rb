@@ -1,3 +1,11 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root "departments#index"
+
+  get "/departments", to: "departments#index", as: "all_the_departments"
+  get "/department:id", to: "department#show", as: "the_one_department"
+  delete "/department/:id", to: "department#destroy", as: "destroy_the_department"
+  
+  resources :departments do 
+    resources :items
+  end
 end
